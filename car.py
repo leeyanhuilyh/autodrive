@@ -3,7 +3,7 @@ from collections import deque
 class Car:
 
     def __init__(self, name: str, x: int, y: int, direction: str):
-        assert direction.lower() in ["n", "e", "s", "w"], "Invalid direction"
+        assert direction.upper() in ["N", "E", "S", "W"], "Invalid direction"
         assert x >= 0, "x must be positive"
         assert y >= 0, "y must be positive"
         self.name = name
