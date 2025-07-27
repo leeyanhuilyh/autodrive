@@ -43,9 +43,9 @@ def main():
         mode = -1
         while mode != "2":
             mode = input("""\
-    Please choose from the following options: 
-    [1] Add a car to field
-    [2] Run simulation
+Please choose from the following options: 
+[1] Add a car to field
+[2] Run simulation
     """)
             assert mode in ["1", "2"], "Invalid mode"
             if mode == "1":
