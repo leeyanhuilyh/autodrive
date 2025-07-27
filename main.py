@@ -26,7 +26,19 @@ def main():
         car = Car("B", 7, 8, "W")
         car.add_command("FFLFFFFFFF")
         simulator.add_car(car)
-
+    elif field_size == 'd3':
+        print("Debug case 3")
+        field = Field(10, 10)
+        simulator.set_field(field)
+        car = Car("A", 1, 2, "N")
+        car.add_command("FFRFFFFRRL")
+        simulator.add_car(car)
+        car = Car("B", 7, 8, "W")
+        car.add_command("FFLFFFFFFF")
+        simulator.add_car(car)
+        car = Car("C", 5, 5, "N")
+        car.add_command("RRFF")
+        simulator.add_car(car)
     else:
         assert len(field_size.split()) == 2, "Field size must be in x y format"
         field_size = field_size.split()
@@ -98,8 +110,8 @@ Please choose from the following options:
             if (car.x, car.y) in curr_positions: # car crash
                 # print(f"Car {car.name} collided with car {curr_positions[car.x, car.y]}")
                 # simulator.end_state[(car.x, car.y)] = (car.name, simulator.cars[curr_positions[car.x, car.y]].name, 1, None, step)
-                simulator.end_print += f"{car.name}, collides with {simulator.cars[curr_positions[car.x, car.y]].name} at ({car.x}, {car.y}) at step {step}\n"
                 simulator.end_print += f"{simulator.cars[curr_positions[car.x, car.y]].name}, collides with {car.name} at ({car.x}, {car.y}) at step {step}\n"
+                simulator.end_print += f"{car.name}, collides with {simulator.cars[curr_positions[car.x, car.y]].name} at ({car.x}, {car.y}) at step {step}\n"
                 to_remove.append(i)
                 to_remove.append(curr_positions[car.x, car.y])
             else:
