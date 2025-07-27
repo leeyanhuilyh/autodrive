@@ -1,4 +1,5 @@
 from collections import deque
+from direction import DIRECTIONS
 
 class Car:
 
@@ -11,6 +12,13 @@ class Car:
         self.y = y
         self.direction = direction
         self.commands = None
+        self.turn_map = {
+            "L": 0,
+            "R": 1
+        }
 
     def add_command(self, commands_str: str):
         self.commands = deque(commands_str)
+
+    def turn(self, command: str):
+        self.direction = DIRECTIONS[self.direction][self.turn_map[command]]
