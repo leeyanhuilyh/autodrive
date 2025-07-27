@@ -46,7 +46,7 @@ def main():
 Please choose from the following options: 
 [1] Add a car to field
 [2] Run simulation
-    """)
+""")
             assert mode in ["1", "2"], "Invalid mode"
             if mode == "1":
                 car_name = input("Please enter the name of the car: ")
