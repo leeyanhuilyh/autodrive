@@ -4,9 +4,9 @@ from typing import List
 
 class Simulator:
 
-    def __init__(self, field: Field = None, cars: List[Car] = None):
+    def __init__(self, field: Field = None, cars: List[Car] = []):
         self.field = field
-        self.cars = cars if cars is not None else []
+        self.cars = cars
         self.car_print = ""
         self.direction_map = {
             "N": (0, 1),
