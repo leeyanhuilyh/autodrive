@@ -38,3 +38,36 @@ class Simulator:
                 print(f"Car {car.name} hit the wall")
         else:
             car.turn(command)
+
+    def run_simulation(self) -> None:
+        step = 1
+        while len(self.cars):
+            curr_positions = {}
+            to_remove = []
+            print(f"Step {step}")
+            for i, car in enumerate(self.cars):
+
+                # Car successfully reached destination
+                if not len(car.commands): 
+                    self.end_print += f"{car.name}, ({car.x}, {car.y}) {car.direction}\n"
+                    to_remove.append(i)
+                    continue
+
+                self.forward(car)
+                
+                # Handle car crash
+                if (car.x, car.y) in curr_positions: 
+                    self.end_print += f"{self.cars[curr_positions[car.x, car.y]].name}, collides with {car.name} at ({car.x}, {car.y}) at step {step}\n"
+                    self.end_print += f"{car.name}, collides with {self.cars[curr_positions[car.x, car.y]].name} at ({car.x}, {car.y}) at step {step}\n"
+                    to_remove.append(i)
+                    to_remove.append(curr_positions[car.x, car.y])
+                else:
+                    # Update current positions
+                    curr_positions[(car.x, car.y)] = i
+            
+            # remove cars in to_remove
+            for i in to_remove:
+                self.cars.pop(i)            
+            step += 1
+
+        print(self.end_print)
