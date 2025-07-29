@@ -1,6 +1,7 @@
 from collections import deque
 from direction import DIRECTIONS
 
+
 class Car:
 
     def __init__(self, name: str, x: int, y: int, direction: str) -> None:

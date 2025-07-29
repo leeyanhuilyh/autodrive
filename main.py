@@ -1,8 +1,5 @@
-import numpy as np
-from car import Car
 from menu import Menu
-from field import Field
-from simulator import Simulator
+
 
 def main():
     menu = Menu()
@@ -31,7 +28,7 @@ def main():
         menu.set_field(field_size)
         while menu.mode != "2":
             mode = input("""\
-Please choose from the following options: 
+Please choose from the following options:
 [1] Add a car to field
 [2] Run simulation
 """)
@@ -50,6 +47,7 @@ Please choose from the following options:
 
     # Run simulation
     menu.simulator.run_simulation()
+
 
 if __name__ == "__main__":
     main()
