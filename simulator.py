@@ -59,8 +59,8 @@ class Simulator:
                 if (car.x, car.y) in curr_positions: 
                     self.end_print += f"{self.cars[curr_positions[car.x, car.y]].name}, collides with {car.name} at ({car.x}, {car.y}) at step {step}\n"
                     self.end_print += f"{car.name}, collides with {self.cars[curr_positions[car.x, car.y]].name} at ({car.x}, {car.y}) at step {step}\n"
-                    to_remove.append(i)
                     to_remove.append(curr_positions[car.x, car.y])
+                    to_remove.append(i)
                 else:
                     # Update current positions
                     curr_positions[(car.x, car.y)] = i
