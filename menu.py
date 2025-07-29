@@ -10,9 +10,10 @@ class Menu:
     def set_field(self, field_input: str):
         field_size = field_input.split()
         assert len(field_size) == 2, "Field size must be in x y format"
-        assert int(field_size[0]) > 0, "Width must be positive"
-        assert int(field_size[1]) > 0, "Height must be positive"
+        assert field_size[0].isdigit() and field_size[1].isdigit(), "Height and width must be a positive integer"
         width, height = int(field_size[0]), int(field_size[1])
+        assert width > 0, "Width must be positive"
+        assert height > 0, "Height must be positive"
         field = Field(width, height)
         self.simulator.set_field(field)
         print(f"You have created a field of {width} x {height}.")
@@ -35,6 +36,7 @@ class Menu:
     def get_car_position_direction(self, car_position: str):
         assert len(car_position.split()) == 3, "Car position must be in x y Direction format"
         car_position = car_position.split()
+        assert car_position[0].isdigit() and car_position[1].isdigit(), "Car position must be a positive integer"
         assert int(car_position[0]) >= 0 and int(car_position[0]) < self.simulator.field.width, "Car position must be within the field"
         assert int(car_position[1]) >= 0 and int(car_position[1]) < self.simulator.field.height, "Car position must be within the field"
         assert car_position[2].upper() in ["N", "E", "S", "W"], "Invalid direction. Must be N, E, S, or W (case insensitive)."
@@ -46,7 +48,7 @@ class Menu:
         return car_direction.upper()
 
     def get_car_commands(self, car_commands: str):
-        assert len(car_commands) < 128, "Car commands must be less than 128 characters"
+        assert 0 < len(car_commands) < 128, "Car commands must be less than 128 characters"
         car_commands = car_commands.upper()
         assert all(command in ["F", "L", "R"] for command in car_commands), "Invalid command. Must be f, b, l, or r (case insensitive)."
         return car_commands
