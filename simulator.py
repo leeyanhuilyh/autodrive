@@ -4,9 +4,9 @@ from typing import List
 
 class Simulator:
 
-    def __init__(self, field: Field = None, cars: List[Car] = []):
+    def __init__(self, field: Field = None, cars: List[Car] = None):
         self.field = field
-        self.cars = cars
+        self.cars = cars if cars is not None else []
         self.car_print = ""
         self.direction_map = {
             "N": (0, 1),
@@ -66,7 +66,7 @@ class Simulator:
                     curr_positions[(car.x, car.y)] = i
             
             # remove cars in to_remove
-            for i in to_remove:
+            for i in reversed(to_remove):
                 self.cars.pop(i)            
             step += 1
 
