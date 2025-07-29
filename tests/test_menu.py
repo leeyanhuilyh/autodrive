@@ -1,6 +1,5 @@
 import pytest
 from menu import Menu
-from car import Car
 
 
 @pytest.mark.parametrize("field_input, expected_width, expected_height", [
@@ -19,7 +18,7 @@ def test_set_field_valid(field_input, expected_width, expected_height):
 @pytest.mark.parametrize("field_input", [
     "10",           # Missing height
     "10 10 10",     # Too many values
-    "0 10",         # Zero width
+    "0 10",         # Zero widt
     "10 0",         # Zero height
     "-1 10",        # Negative width
     "10 -1",        # Negative height
@@ -53,9 +52,9 @@ def test_add_car():
     car_name = "TestCar"
     car_position = (5, 5, "N")
     car_commands = "FFR"
-    
+
     menu.add_car(car_name, car_position, car_commands)
-    
+
     assert len(menu.simulator.cars) == 1
     car = menu.simulator.cars[0]
     assert car.name == car_name
@@ -171,4 +170,4 @@ def test_menu_initialization():
     assert menu.simulator is not None
     assert menu.mode == -1
     assert len(menu.simulator.cars) == 0
-    assert menu.simulator.field is None 
+    assert menu.simulator.field is None

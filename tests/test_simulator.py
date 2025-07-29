@@ -23,7 +23,7 @@ def test_simulator_initialization_with_parameters():
     field = Field(10, 10)
     car = Car("A", 1, 2, "N")
     cars = [car]
-    
+
     simulator = Simulator(field, cars)
     assert simulator.field == field
     assert simulator.cars == cars
@@ -96,10 +96,10 @@ def test_forward_movement_valid(start_x, start_y, direction, command, expected_x
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     car = Car("A", start_x, start_y, direction)
     car.add_command(command)
-    
+
     simulator.forward(car)
     assert car.x == expected_x
     assert car.y == expected_y
@@ -116,10 +116,10 @@ def test_forward_movement_wall_collision(start_x, start_y, direction):
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     car = Car("A", start_x, start_y, direction)
     car.add_command("F")
-    
+
     simulator.forward(car)
     assert car.x == start_x  # Position unchanged
     assert car.y == start_y
@@ -140,10 +140,10 @@ def test_turn_commands(start_direction, turn_command, expected_direction):
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     car = Car("A", 5, 5, start_direction)
     car.add_command(turn_command)
-    
+
     simulator.forward(car)
     assert car.direction == expected_direction
     assert car.x == 5  # Position unchanged
@@ -155,13 +155,13 @@ def test_run_simulation_single_car():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     car = Car("A", 1, 2, "N")
     car.add_command("FFR")
     simulator.add_car(car)
-    
+
     simulator.run_simulation()
-    
+
     assert len(simulator.cars) == 0  # All cars finished
     assert "A, (1, 4) E" in simulator.end_print
 
@@ -170,19 +170,19 @@ def test_run_simulation_car_collision():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     # Car A moves East to (2, 1)
     car_a = Car("A", 1, 1, "E")
     car_a.add_command("F")
     simulator.add_car(car_a)
-    
+
     # Car B moves South to (2, 1) - collision!
     car_b = Car("B", 2, 2, "S")
     car_b.add_command("F")
     simulator.add_car(car_b)
-    
+
     simulator.run_simulation()
-    
+
     assert len(simulator.cars) == 0  # Both cars removed due to collision
     assert "A, collides with B at (2, 1)" in simulator.end_print
     assert "B, collides with A at (2, 1)" in simulator.end_print
@@ -192,19 +192,19 @@ def test_run_simulation_multiple_cars_no_collision():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     # Car A moves to (2, 1)
     car_a = Car("A", 1, 1, "E")
     car_a.add_command("F")
     simulator.add_car(car_a)
-    
+
     # Car B moves to (1, 2) - no collision
     car_b = Car("B", 1, 1, "N")
     car_b.add_command("F")
     simulator.add_car(car_b)
-    
+
     simulator.run_simulation()
-    
+
     assert len(simulator.cars) == 0  # Both cars finished
     assert "A, (2, 1) E" in simulator.end_print
     assert "B, (1, 2) N" in simulator.end_print
@@ -214,19 +214,19 @@ def test_run_simulation_car_finishes_early():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     # Car A finishes in 2 steps
     car_a = Car("A", 1, 1, "E")
     car_a.add_command("FF")
     simulator.add_car(car_a)
-    
+
     # Car B takes longer
     car_b = Car("B", 1, 1, "N")
     car_b.add_command("FFFF")
     simulator.add_car(car_b)
-    
+
     simulator.run_simulation()
-    
+
     assert len(simulator.cars) == 0  # All cars finished
     assert "A, (3, 1) E" in simulator.end_print
     assert "B, (1, 5) N" in simulator.end_print
@@ -236,9 +236,9 @@ def test_run_simulation_empty_cars():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     simulator.run_simulation()
-    
+
     assert len(simulator.cars) == 0
     assert simulator.end_print == ""
 
@@ -247,10 +247,10 @@ def test_car_print_format():
     simulator = Simulator()
     field = Field(10, 10)
     simulator.set_field(field)
-    
+
     car = Car("TestCar", 5, 3, "S")
     car.add_command("FFRLL")
     simulator.add_car(car)
-    
+
     expected_format = "- TestCar, (5, 3) S, FFRLL\n"
-    assert simulator.car_print == expected_format 
+    assert simulator.car_print == expected_format

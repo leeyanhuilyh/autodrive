@@ -12,6 +12,7 @@ def test_field_creation(width, height):
     assert field.field.shape == (height, width)
     assert field.field.sum() == 0
 
+
 @pytest.mark.parametrize("width, height", [
     (0, 0), (-1, 10), (4, -1)
 ])
