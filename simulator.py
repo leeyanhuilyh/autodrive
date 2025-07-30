@@ -45,7 +45,6 @@ class Simulator:
         while len(self.cars):
             curr_positions = {}
             to_remove = []
-            print(f"Step {step}")
             for i, car in enumerate(self.cars):
 
                 # Car successfully reached destination
