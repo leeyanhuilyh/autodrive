@@ -1,6 +1,6 @@
-from car import Car
-from simulator import Simulator
-from field import Field
+from .car import Car
+from .simulator import Simulator
+from .field import Field
 from typing import Tuple
 
 

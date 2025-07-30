@@ -1,7 +1,7 @@
 import pytest
-from simulator import Simulator
-from car import Car
-from field import Field
+from src.simulator import Simulator
+from src.car import Car
+from src.field import Field
 
 
 def test_simulator_initialization():

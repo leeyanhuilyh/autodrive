@@ -1,5 +1,5 @@
 from collections import deque
-from direction import DIRECTIONS
+from .direction import DIRECTIONS
 
 
 class Car:

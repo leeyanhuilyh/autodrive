@@ -1,5 +1,5 @@
 import pytest
-from field import Field
+from src.field import Field
 
 
 @pytest.mark.parametrize("width, height", [

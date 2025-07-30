@@ -1,5 +1,5 @@
-from field import Field
-from car import Car
+from .field import Field
+from .car import Car
 from typing import List
 
 

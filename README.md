@@ -53,11 +53,13 @@ python main.py
 ```
 autodrive/
 ├── main.py          # Main application entry point
-├── car.py           # Car class with movement logic
-├── field.py         # Field/grid representation
-├── simulator.py     # Simulation engine
-├── menu.py          # User interface and input handling
-├── direction.py     # Direction mapping constants
+├── src/             # Source code package
+│   ├── __init__.py  # Package initialization
+│   ├── car.py       # Car class with movement logic
+│   ├── field.py     # Field/grid representation
+│   ├── simulator.py # Simulation engine
+│   ├── menu.py      # User interface and input handling
+│   └── direction.py # Direction mapping constants
 ├── requirements.txt # Python dependencies
 └── tests/           # Test suite
     ├── test_car.py

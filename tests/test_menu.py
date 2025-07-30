@@ -1,5 +1,5 @@
 import pytest
-from menu import Menu
+from src.menu import Menu
 
 
 @pytest.mark.parametrize("field_input, expected_width, expected_height", [
